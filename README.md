@@ -16,7 +16,7 @@ The goal is simple: **build things, learn from them, and get better over time.**
 
 | #  | Project        | Description |
 | -- | -------------- | ----------- |
-| 01 | Coming soon... | —           |
+| 01 | Coming soon... | Expense Analyzer |
 
 ## 📈 Progress
 
