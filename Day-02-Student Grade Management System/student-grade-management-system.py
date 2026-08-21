@@ -2,6 +2,7 @@ import sys
 
 students = []
 
+
 def interface():
     print("""=== STUDENT GRADE MANAGER ===
 
@@ -19,57 +20,72 @@ def interface():
 
     if useranswer == 1:
         add_student()
+
     elif useranswer == 2:
         view_student()
+
     elif useranswer == 3:
         view_top_student()
+
     elif useranswer == 4:
         sys.exit()
+
     else:
-        print("Enter 1,2,3 or 4!!!")
+        print("Enter 1, 2, 3 or 4!!!")
+
 
 def add_student():
     grades = []
-    name = input("Please enter students name: ").strip()
+
+    name = input("Please enter student's name: ").strip()
+
     while True:
         try:
-            grade = float(input("Please enter grades one by one (Type done in case you want to quit): "))
+            grade_input = input(
+                "Please enter grades one by one "
+                "(Type done in case you want to quit): "
+            )
+
+            if grade_input.lower().strip() == "done":
+
+                if len(grades) == 0:
+                    print("You should enter at least 1 grade!!")
+                    continue
+
+                print(f"{name} has been added successfully!!")
+                break
+
+            grade = float(grade_input)
+
+            if not (0 <= grade <= 100):
+                raise ValueError
+
             grades.append(grade)
 
-            if not (grade>=0 and grade<=100):
-                raise ValidationError("The note should be between 1 and 100!!! ")
-
-            if grade.lower().strip() == "done":
-                print(f"{name} has added succesfully!!")
-                break
         except ValueError:
-            print("Grade should be a value between 1 and 100!!!")
-        except ValidationError:
-            print("Grade should be a value between 1 and 100!!!")
-        
+            print("Grade should be a value between 0 and 100!!!")
 
     totalgrade = 0
-    lettergrade = ""
 
     for grade in grades:
         totalgrade += grade
-    if len(grades) > 0:
-        average = totalgrade/len(grades)
-    else:
-        print("You should enter at least 1 grade!!")
 
-    if average >90 and average <100:
+    average = totalgrade / len(grades)
+
+    if average >= 90:
         lettergrade = "A"
-    elif average >80 and average <= 90:
+
+    elif average >= 80:
         lettergrade = "B"
-    elif average > 70 and average <= 80:
+
+    elif average >= 70:
         lettergrade = "C"
-    elif average > 60 and average <= 70:
+
+    elif average >= 60:
         lettergrade = "D"
-    elif average <= 60:
-        lettergrade = "F"
+
     else:
-        print("Ivalid scores")
+        lettergrade = "F"
 
     students.append({
         "name": name,
@@ -78,23 +94,45 @@ def add_student():
         "lettergrade": lettergrade
     })
 
+
 def view_student():
+
+    if len(students) == 0:
+        print("There are no students yet!")
+        return
+
     for student in students:
-        print(f"{student["name"]}")
+
+        print(f"\n{student['name']}")
+
         print("Grades: ", end="")
-        for item in student.get("grades"):
+
+        for item in student["grades"]:
             print(item, end=" ")
-        print(f"Average: {student["average"]}")
-        print(f"Letter grade: {student["lettergrade"]}")
+
+        print()
+
+        print(f"Average: {student['average']:.2f}")
+        print(f"Letter grade: {student['lettergrade']}")
+
 
 def view_top_student():
+
+    if len(students) == 0:
+        print("There are no students yet!")
+        return
+
     highest_note = None
     highest_note_person = None
+
     for student in students:
-        if highest_note == None or student["average"] > highest_note:
+
+        if highest_note is None or student["average"] > highest_note:
+            highest_note = student["average"]
             highest_note_person = student["name"]
+
     print(f"Top student is {highest_note_person}")
-    print(f"Average: {highest_note}")
+    print(f"Average: {highest_note:.2f}")
 
 
 while True:
