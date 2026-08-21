@@ -16,7 +16,8 @@ The goal is simple: **build things, learn from them, and get better over time.**
 
 | #  | Project        | Description |
 | -- | -------------- | ----------- |
-| 01 | Coming soon... | Expense Analyzer |
+| 01 | Expense Analyzer | You can analyze expenses through this. |
+| 02 | Student Grade Management System | Through the system you can grade students and display grades. |
 
 ## 📈 Progress
 
