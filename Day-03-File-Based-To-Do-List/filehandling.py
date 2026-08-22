@@ -1,6 +1,7 @@
 import sys
 import datetime
 
+
 def add_note():
     while True:
         note = input("What do you want to add: ")
@@ -20,18 +21,24 @@ def add_note():
 
     print("The note was saved successfully!")
 
+
 def view_note():
     try:
         with open("notes.txt", "r") as file:
             lines = file.readlines()
+
             if len(lines) == 0:
                 print("There are no messages at this point!")
                 return
-            print("\nYour messages are: \n")
+
+            print("\nYour messages are:\n")
+
             for number, line in enumerate(lines, start=1):
                 print(f"{number}. {line.strip()}")
+
     except FileNotFoundError:
         print("File couldn't be found")
+
 
 def search_notes():
     try:
@@ -54,6 +61,7 @@ def search_notes():
 
     except FileNotFoundError:
         print("There are no notes to search!")
+
 
 def delete_note():
     try:
@@ -90,28 +98,37 @@ def delete_note():
 
     print("Note deleted successfully!")
 
+
 def clear_notes():
     with open("notes.txt", "w") as file:
         pass
 
     print("All notes cleared!")
 
+
 def interface():
-    print("""=== NOTES MANAGER ===
+    print("""
+=== NOTES MANAGER ===
 
 1. Add Note
 2. View Notes
 3. Search Notes
 4. Delete Note
 5. Clear Notes
-6. Exit: """, end="")
+6. Exit
+""")
 
     while True:
         try:
-            useranswer = int(input())
-            break
+            useranswer = int(input("Choose: "))
+
+            if 1 <= useranswer <= 6:
+                break
+
+            print("Enter a number between 1 and 6!")
+
         except ValueError:
-            print("Invalid Value!")
+            print("Invalid value! Enter a number between 1 and 6.")
 
     if useranswer == 1:
         add_note()
@@ -125,6 +142,7 @@ def interface():
         clear_notes()
     elif useranswer == 6:
         sys.exit()
+
 
 while True:
     interface()
