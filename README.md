@@ -18,6 +18,8 @@ The goal is simple: **build things, learn from them, and get better over time.**
 | -- | -------------- | ----------- |
 | 01 | Expense Analyzer | You can analyze expenses through this. |
 | 02 | Student Grade Management System | Through the system you can grade students and display grades. |
+| 03 | File based to-do list | I practiced file handling with this. |
+| 04 | Banking System | Practicing OOP for the first time in this repo. |
 
 ## 📈 Progress
 
