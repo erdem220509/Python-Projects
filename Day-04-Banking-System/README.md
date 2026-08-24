@@ -1,6 +1,6 @@
 # Day #4 — Object-Oriented Banking System 🏦
 
-A command-line banking system built with Python to practice Object-Oriented Programming (OOP), inheritance, method overriding, and polymorphism.
+A command line banking system built with Python to practice Object-Oriented Programming (OOP), inheritance, method overriding, and polymorphism.
 
 ## Features
 
